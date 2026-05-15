@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget{
 }
 
 class MyHomePage extends StatefulWidget{
-
   @override
   State<StatefulWidget> createState() {
     return MyHomePageUI();
@@ -31,19 +30,27 @@ class MyHomePage extends StatefulWidget{
 }
 
 class MyHomePageUI extends State<MyHomePage>{
-  Map<String,String> FormValue = {
-    "Num1":"",
-    "Num2":"",
-    "Num3":"",
+  Map<String,double> FormValue = {
+    "Num1":0,
+    "Num2":0,
+    "Num3":0,
   };
+
+  double Sum = 0;
 
   @override
   Widget build(BuildContext context) {
     MyInputOnChange(InputKey, InputValue){
       setState(() {
-        FormValue.update(InputKey, (value)=>InputValue);
+        FormValue.update(InputKey, (value)=>double.parse(InputValue));
       });
       // print(FormValue);
+    }
+
+    AddAllNumber(){
+      setState(() {
+        Sum = FormValue['Num1']!+FormValue['Num2']!+FormValue['Num3']!;
+      });
     }
 
     return Scaffold(
@@ -55,7 +62,7 @@ class MyHomePageUI extends State<MyHomePage>{
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Sum=0",style: HeadTextStyle()),
+              Text("Sum=$Sum",style: HeadTextStyle()),
               SizedBox(height: 20,),
               TextFormField(
                 onChanged: (value){
@@ -84,7 +91,7 @@ class MyHomePageUI extends State<MyHomePage>{
               Container(
                 width: double.infinity,
                 child: ElevatedButton(onPressed: (){
-
+                  AddAllNumber();
                 }, child: Text("Add"),style: AppButtonStyle(),),
               ),
             ],
