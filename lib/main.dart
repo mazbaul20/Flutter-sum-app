@@ -31,8 +31,21 @@ class MyHomePage extends StatefulWidget{
 }
 
 class MyHomePageUI extends State<MyHomePage>{
+  Map<String,String> FormValue = {
+    "Num1":"",
+    "Num2":"",
+    "Num3":"",
+  };
+
   @override
   Widget build(BuildContext context) {
+    MyInputOnChange(InputKey, InputValue){
+      setState(() {
+        FormValue.update(InputKey, (value)=>InputValue);
+      });
+      // print(FormValue);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Add'),
@@ -45,10 +58,27 @@ class MyHomePageUI extends State<MyHomePage>{
               Text("Sum=0",style: HeadTextStyle()),
               SizedBox(height: 20,),
               TextFormField(
+                onChanged: (value){
+                  // set value to Num1
+                  MyInputOnChange("Num1",value);
+                },
                 decoration: AppInputStyle("First Number"),
               ),
               SizedBox(height: 20,),
-              TextFormField(decoration: AppInputStyle("Second Number"),
+              TextFormField(
+                onChanged: (value){
+                  // set value to Num2
+                  MyInputOnChange("Num2",value);
+                },
+                decoration: AppInputStyle("Second Number"),
+              ),
+              SizedBox(height: 20,),
+              TextFormField(
+                onChanged: (value){
+                  // set value to Num3
+                  MyInputOnChange("Num3",value);
+                },
+                decoration: AppInputStyle("Third Number"),
               ),
               SizedBox(height: 20,),
               Container(
