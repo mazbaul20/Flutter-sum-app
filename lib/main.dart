@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'Style.dart';
 
@@ -85,6 +86,10 @@ class MyHomePageUI extends State<MyHomePage>{
                 },
                 decoration: AppInputStyle("First Number"),
                 controller: controller1,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                ],
               ),
               SizedBox(height: 20,),
               TextFormField(
@@ -94,6 +99,10 @@ class MyHomePageUI extends State<MyHomePage>{
                 },
                 decoration: AppInputStyle("Second Number"),
                 controller: controller2,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                ],
               ),
               SizedBox(height: 20,),
               TextFormField(
@@ -103,6 +112,10 @@ class MyHomePageUI extends State<MyHomePage>{
                 },
                 decoration: AppInputStyle("Third Number"),
                 controller: controller3,
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+                ],
               ),
               SizedBox(height: 20,),
               Row(
