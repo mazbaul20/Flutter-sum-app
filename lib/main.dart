@@ -38,6 +38,10 @@ class MyHomePageUI extends State<MyHomePage>{
 
   double Sum = 0;
 
+  final TextEditingController controller1 = TextEditingController();
+  final TextEditingController controller2 = TextEditingController();
+  final TextEditingController controller3 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     MyInputOnChange(InputKey, InputValue){
@@ -50,6 +54,16 @@ class MyHomePageUI extends State<MyHomePage>{
     AddAllNumber(){
       setState(() {
         Sum = FormValue['Num1']!+FormValue['Num2']!+FormValue['Num3']!;
+      });
+    }
+
+    ClearAllNumber(){
+      setState(() {
+        controller1.clear();
+        controller2.clear();
+        controller3.clear();
+        FormValue = {"Num1": 0, "Num2": 0, "Num3": 0};
+        Sum = 0;
       });
     }
 
@@ -70,6 +84,7 @@ class MyHomePageUI extends State<MyHomePage>{
                   MyInputOnChange("Num1",value);
                 },
                 decoration: AppInputStyle("First Number"),
+                controller: controller1,
               ),
               SizedBox(height: 20,),
               TextFormField(
@@ -78,6 +93,7 @@ class MyHomePageUI extends State<MyHomePage>{
                   MyInputOnChange("Num2",value);
                 },
                 decoration: AppInputStyle("Second Number"),
+                controller: controller2,
               ),
               SizedBox(height: 20,),
               TextFormField(
@@ -86,13 +102,30 @@ class MyHomePageUI extends State<MyHomePage>{
                   MyInputOnChange("Num3",value);
                 },
                 decoration: AppInputStyle("Third Number"),
+                controller: controller3,
               ),
               SizedBox(height: 20,),
-              Container(
-                width: double.infinity,
-                child: ElevatedButton(onPressed: (){
-                  AddAllNumber();
-                }, child: Text("Add"),style: AppButtonStyle(),),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: (){
+                        ClearAllNumber();
+                      },
+                      child: Text("Clear"),
+                      style: AppButtonStyle(Colors.red),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: AddAllNumber,
+                      child: Text("Add"),
+                      style: AppButtonStyle(Colors.blue),
+                    ),
+                  ),
+
+                ],
               ),
             ],
           ),

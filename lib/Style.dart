@@ -21,10 +21,10 @@ TextStyle HeadTextStyle(){
   );
 }
 
-ButtonStyle AppButtonStyle(){
+ButtonStyle AppButtonStyle(btnColor){
   return ElevatedButton.styleFrom(
     padding: EdgeInsets.all(20),
-    backgroundColor: Colors.blue,
+    backgroundColor: btnColor,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(4)),
     ),
